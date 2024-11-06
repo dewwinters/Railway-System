@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Main {
@@ -10,7 +11,8 @@ public class Main {
     private static JPanel table;
     private static GridLayout gridLayout;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
+        Database database = new Database();
 
         frame = new JFrame("Railway System");
         frame.setSize(1280, 720);
@@ -57,7 +59,7 @@ public class Main {
         modify.setFont(new Font("Arial", Font.BOLD, 20));
         modify.addActionListener(new ActionListener() {
            public void actionPerformed(ActionEvent e) {
-               new ModifyList(frame);
+               new ModifyList(frame, database);
            }
         });
         panel.add(modify, BorderLayout.SOUTH);
