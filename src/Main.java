@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class Main {
@@ -53,6 +55,11 @@ public class Main {
         modify.setBackground(Color.decode("#45C4B0"));
         modify.setForeground(Color.white);
         modify.setFont(new Font("Arial", Font.BOLD, 20));
+        modify.addActionListener(new ActionListener() {
+           public void actionPerformed(ActionEvent e) {
+               new ModifyList(frame);
+           }
+        });
         panel.add(modify, BorderLayout.SOUTH);
 
         frame.add(panel, BorderLayout.CENTER);

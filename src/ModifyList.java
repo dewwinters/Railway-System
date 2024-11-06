@@ -16,8 +16,28 @@ public class ModifyList {
         JButton addTrain = new JButton("Add Train");
         panel.add(addTrain);
 
-        
+        JButton editTrain = new JButton("Edit Train");
+        panel.add(editTrain);
 
+        JButton addEmployee = new JButton("Add Employee");
+        panel.add(addEmployee);
+
+        JButton editEmployee = new JButton("Edit Employee");
+        panel.add(editEmployee);
+
+        JButton addPassenger = new JButton("Add Passenger");
+        panel.add(addPassenger);
+
+        JButton editPassenger = new JButton("Edit Passenger");
+        panel.add(editPassenger);
+
+        JButton addTrip = new JButton("Add Trip");
+        panel.add(addTrip);
+
+        JButton editTrip = new JButton("Edit Trip");
+        panel.add(editTrip);
+
+        frame.getContentPane().add(panel, BorderLayout.CENTER);
         frame.setVisible(true);
     }
 
