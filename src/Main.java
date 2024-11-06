@@ -11,10 +11,10 @@ public class Main {
     public static void main(String[] args) {
 
         frame = new JFrame("Railway System");
-        frame.setLocationRelativeTo(null);
         frame.setSize(1280, 720);
         frame.getContentPane().setLayout(new BorderLayout());
         frame.getContentPane().setBackground(Color.decode("#EBFFD8"));
+        frame.setLocationRelativeTo(null);
 
         JPanel panel = new JPanel(new BorderLayout(20, 20));
         panel.setBackground(null);
@@ -31,7 +31,7 @@ public class Main {
         table.setBackground(Color.decode("#EBFFD8"));
 
         ArrayList<Trip> trips = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 8; i++) {
             Trip trip = new Trip();
             trip.setArrivalTime("00:00");
             trip.setDepartureTime("00:00");
@@ -48,6 +48,13 @@ public class Main {
 
         JScrollPane sp = new JScrollPane(table);
         panel.add(sp, BorderLayout.CENTER);
+
+        JButton modify = new JButton("Modify");
+        modify.setBackground(Color.decode("#45C4B0"));
+        modify.setForeground(Color.white);
+        modify.setFont(new Font("Arial", Font.BOLD, 20));
+        panel.add(modify, BorderLayout.SOUTH);
+
         frame.add(panel, BorderLayout.CENTER);
         frame.setVisible(true);
     }
@@ -82,6 +89,7 @@ public class Main {
             if (trip.getTrain().getCapacity() > trip.getBookedSeats()) {
                 statusS = "Available";
             }
+            row.setCursor(new Cursor(Cursor.HAND_CURSOR));
         } else {
             trainS = "Train";
             startS = "From";
@@ -105,13 +113,13 @@ public class Main {
         JLabel date = JLabel(dateS, 100);
         row.add(date);
 
-        JLabel deptTime = JLabel(deptS, 65);
+        JLabel deptTime = JLabel(deptS, 75);
         row.add(deptTime);
 
-        JLabel arrTime = JLabel(arrS, 65);
+        JLabel arrTime = JLabel(arrS, 75);
         row.add(arrTime);
 
-        JLabel price = JLabel(priceS, 50);
+        JLabel price = JLabel(priceS, 75);
         row.add(price);
 
         JLabel status = JLabel(statusS, 100);
