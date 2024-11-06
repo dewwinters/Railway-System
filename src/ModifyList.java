@@ -13,37 +13,38 @@ public class ModifyList {
         panel.setBackground(null);
         panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
 
-        JButton addTrain = new JButton("Add Train");
+        Button addTrain = new Button("Add Train");
         panel.add(addTrain);
 
-        JButton editTrain = new JButton("Edit Train");
+        Button editTrain = new Button("Edit Train");
         panel.add(editTrain);
 
-        JButton addEmployee = new JButton("Add Employee");
+        Button addEmployee = new Button("Add Employee");
         panel.add(addEmployee);
 
-        JButton editEmployee = new JButton("Edit Employee");
+        Button editEmployee = new Button("Edit Employee");
         panel.add(editEmployee);
 
-        JButton addPassenger = new JButton("Add Passenger");
+        Button addPassenger = new Button("Add Passenger");
         panel.add(addPassenger);
 
-        JButton editPassenger = new JButton("Edit Passenger");
+        Button editPassenger = new Button("Edit Passenger");
         panel.add(editPassenger);
 
-        JButton addTrip = new JButton("Add Trip");
+        Button addTrip = new Button("Add Trip");
         panel.add(addTrip);
 
-        JButton editTrip = new JButton("Edit Trip");
+        Button editTrip = new Button("Edit Trip");
         panel.add(editTrip);
 
         frame.getContentPane().add(panel, BorderLayout.CENTER);
         frame.setVisible(true);
     }
 
-    private JButton JButton(String text) {
+    private JButton Button(String text) {
         JButton btn = new JButton(text);
-        btn.setBackground(Color.decode("#45c4b0"));
+        btn.setBackground(Color.decode("#45C4B0"));
+        btn.setForeground(Color.white);
         btn.setFont(new Font("Serif", Font.BOLD, 20));
         return btn;
     }
