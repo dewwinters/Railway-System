@@ -54,7 +54,7 @@ public class AddPassenger {
                 p.setEmail(email.getText());
                 try {
                     PassengersDatabase.addPassenger(p, database);
-                    JOptionPane.showMessageDialog(parent, "Passenger Added Successfully");
+                    JOptionPane.showMessageDialog(frame, "Passenger Added Successfully");
                     frame.dispose();
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(frame, "Operation Failed");

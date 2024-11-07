@@ -105,7 +105,7 @@ public class Main {
             }
             row.setCursor(new Cursor(Cursor.HAND_CURSOR));
         } else {
-            trainS = "Trains.Train";
+            trainS = "Train";
             startS = "From";
             destS = "To";
             dateS = "Date";
