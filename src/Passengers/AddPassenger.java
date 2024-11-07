@@ -1,4 +1,4 @@
-package Employees;
+package Passengers;
 
 import Main.Database;
 import Main.GUI;
@@ -9,9 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-public class AddEmployee {
-    public AddEmployee(JFrame parent, Database database) throws SQLException {
-        JFrame frame = new JFrame("Add Employee");
+public class AddPassenger {
+
+    public AddPassenger(JFrame parent, Database database) throws SQLException {
+        JFrame frame = new JFrame("Add Passenger");
         frame.setSize(750, 700);
         frame.getContentPane().setLayout(new BorderLayout());
         frame.setLocationRelativeTo(parent);
@@ -22,50 +23,38 @@ public class AddEmployee {
         panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
 
         panel.add(GUI.Label("ID:"));
-        JLabel id = GUI.Label(String.valueOf(EmployeesDatabase.getNextID(database)));
+        JLabel id = GUI.Label(String.valueOf(PassengersDatabase.getNextID(database)));
         panel.add(id);
 
         panel.add(GUI.Label("Name:"));
         JTextField name = GUI.TextField();
         panel.add(name);
 
+        panel.add(GUI.Label("Telephone:"));
+        JTextField telephone = GUI.TextField();
+        panel.add(telephone);
+
         panel.add(GUI.Label("Email:"));
         JTextField email = GUI.TextField();
         panel.add(email);
 
-        panel.add(GUI.Label("Tel:"));
-        JTextField tel = GUI.TextField();
-        panel.add(tel);
-
-        panel.add(GUI.Label("Salary:"));
-        JTextField salary = GUI.TextField();
-        panel.add(salary);
-
-        panel.add(GUI.Label("Position:"));
-        JTextField position = GUI.TextField();
-        panel.add(position);
-
         JButton cancel = GUI.Button("Cancel");
         cancel.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-            }
+            public void actionPerformed(ActionEvent e) {frame.dispose();}
         });
         panel.add(cancel);
 
         JButton submit = GUI.Button("Submit");
         submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Employee emp = new Employee();
-                emp.setId(Integer.parseInt(id.getText()));
-                emp.setName(name.getText());
-                emp.setEmail(email.getText());
-                emp.setTelephone(tel.getText());
-                emp.setSalary(Double.parseDouble(salary.getText()));
-                emp.setPosition(position.getText());
+                Passenger p = new Passenger();
+                p.setId(Integer.parseInt(id.getText()));
+                p.setName(name.getText());
+                p.setTelephone(telephone.getText());
+                p.setEmail(email.getText());
                 try {
-                    EmployeesDatabase.addEmployee(emp, database);
-                    JOptionPane.showMessageDialog(frame, "Employee Added Successfully");
+                    PassengersDatabase.addPassenger(p, database);
+                    JOptionPane.showMessageDialog(parent, "Passenger Added Successfully");
                     frame.dispose();
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(frame, "Operation Failed");

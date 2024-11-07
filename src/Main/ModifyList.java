@@ -2,8 +2,12 @@ package Main;
 
 import Employees.AddEmployee;
 import Employees.EditEmployee;
+import Passengers.AddPassenger;
+import Passengers.EditPassenger;
 import Trains.AddTrain;
 import Trains.EditTrain;
+import Trips.AddTrip;
+import Trips.EditTrip;
 
 import javax.swing.*;
 import java.awt.*;
@@ -72,15 +76,51 @@ public class ModifyList {
         panel.add(editEmployee);
 
         JButton addPassenger = GUI.Button("Add Passenger");
+        addPassenger.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new AddPassenger(frame, database);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(frame, ex.getMessage());
+                }
+            }
+        });
         panel.add(addPassenger);
 
         JButton editPassenger = GUI.Button("Edit Passenger");
+        editPassenger.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new EditEmployee(frame, database);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(frame, ex.getMessage());
+                }
+            }
+        });
         panel.add(editPassenger);
 
         JButton addTrip = GUI.Button("Add Trip");
+        addTrip.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new AddTrip(frame, database);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(frame, ex.getMessage());
+                }
+            }
+        });
         panel.add(addTrip);
 
         JButton editTrip = GUI.Button("Edit Trip");
+        editTrip.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new EditTrip(frame, database);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(frame, ex.getMessage());
+                }
+            }
+        });
         panel.add(editTrip);
 
         frame.getContentPane().add(panel, BorderLayout.CENTER);
