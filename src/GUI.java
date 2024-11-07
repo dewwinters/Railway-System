@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GUI {
+
+    public static Color background = Color.decode("#EBFFD8");
+
     public static JLabel Label(String text) {
         JLabel label = new JLabel(text);
         label.setForeground(Color.decode("#012030"));

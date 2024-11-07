@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class EditTrain {
     public EditTrain(JFrame parent, Database database) throws SQLException {
         JFrame frame = new JFrame("Edit Train");
-        frame.setSize(750, 350);
+        frame.setSize(750, 400);
         frame.getContentPane().setLayout(new BorderLayout());
         frame.setLocationRelativeTo(parent);
         frame.getContentPane().setBackground(Color.decode("#EBFFD8"));

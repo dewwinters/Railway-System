@@ -5,26 +5,26 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class AddTrain {
-    public AddTrain(JFrame oldFrame, Database database) throws SQLException {
+    public AddTrain(JFrame parent, Database database) throws SQLException {
         JFrame frame = new JFrame("Add Train");
-        frame.setSize(750, 350);
+        frame.setSize(750, 400);
         frame.getContentPane().setLayout(new BorderLayout());
-        frame.setLocationRelativeTo(oldFrame);
-        frame.getContentPane().setBackground(Color.decode("#EBFFD8"));
+        frame.setLocationRelativeTo(parent);
+        frame.getContentPane().setBackground(GUI.background);
 
         JPanel panel = new JPanel(new GridLayout(4, 2, 20, 20));
         panel.setBackground(null);
         panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
 
-        panel.add(GUI.Label("ID: "));
+        panel.add(GUI.Label("ID:"));
         JLabel id = GUI.Label(String.valueOf(TrainsDatabase.getNextID(database)));
         panel.add(id);
 
-        panel.add(GUI.Label("Capacity: "));
+        panel.add(GUI.Label("Capacity:"));
         TextField capacity = new TextField();
         panel.add(capacity);
 
-        panel.add(GUI.Label("Description: "));
+        panel.add(GUI.Label("Description:"));
         TextField description = new TextField();
         panel.add(description);
 
@@ -45,7 +45,7 @@ public class AddTrain {
                 t.setDescription(description.getText());
                 try {
                     TrainsDatabase.addTrain(t, database);
-                    JOptionPane.showMessageDialog(frame, "Train added successfully");
+                    JOptionPane.showMessageDialog(frame, "Train Added Successfully");
                     frame.dispose();
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(frame, "Operation Failed");
@@ -55,7 +55,6 @@ public class AddTrain {
         panel.add(submit);
 
         frame.getContentPane().add(panel, BorderLayout.CENTER);
-
         frame.setVisible(true);
     }
 }

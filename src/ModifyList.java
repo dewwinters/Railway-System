@@ -21,8 +21,8 @@ public class ModifyList {
             public void actionPerformed(ActionEvent e) {
                 try {
                     new AddTrain(frame, database);
-                } catch (Exception e1) {
-                    e1.printStackTrace();
+                } catch (SQLException e1) {
+                    JOptionPane.showMessageDialog(frame, e1.getMessage());
                 }
             }
         });
@@ -34,13 +34,22 @@ public class ModifyList {
                 try {
                     new EditTrain(frame, database);
                 } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
+                    JOptionPane.showMessageDialog(frame, ex.getMessage());
                 }
             }
         });
         panel.add(editTrain);
 
         JButton addEmployee = GUI.Button("Add Employee");
+        addEmployee.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new AddEmployee(frame, database);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(frame, ex.getMessage());
+                }
+            }
+        });
         panel.add(addEmployee);
 
         JButton editEmployee = GUI.Button("Edit Employee");
