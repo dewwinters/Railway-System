@@ -26,7 +26,7 @@ public class Main {
 
         JLabel title = new JLabel("Railway System");
         title.setForeground(Color.decode("#012030"));
-        title.setFont(new Font("Arial", Font.BOLD, 35));
+        title.setFont(new Font(null, Font.BOLD, 35));
         title.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(title, BorderLayout.NORTH);
 
@@ -56,7 +56,7 @@ public class Main {
         JButton modify = new JButton("Modify");
         modify.setBackground(Color.decode("#45C4B0"));
         modify.setForeground(Color.white);
-        modify.setFont(new Font("Arial", Font.BOLD, 20));
+        modify.setFont(new Font(null, Font.BOLD, 20));
         modify.addActionListener(new ActionListener() {
            public void actionPerformed(ActionEvent e) {
                new ModifyList(frame, database);
@@ -140,7 +140,7 @@ public class Main {
     private static JLabel JLabel(String text, int width) {
         JLabel label = new JLabel(text);
         label.setPreferredSize(new Dimension(width, 20));
-        label.setFont(new Font("Arial", Font.PLAIN, 20));
+        label.setFont(new Font(null, Font.PLAIN, 20));
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setForeground(Color.decode("#13678a"));
 

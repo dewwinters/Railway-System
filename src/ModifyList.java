@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class ModifyList {
     public ModifyList(JFrame oldFrame, Database database) {
@@ -15,11 +16,11 @@ public class ModifyList {
         panel.setBackground(null);
         panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
 
-        Button addTrain = new Button("Add Train");
+        JButton addTrain = GUI.Button("Add Train");
         addTrain.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    new AddTrain(oldFrame, database);
+                    new AddTrain(frame, database);
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -27,36 +28,37 @@ public class ModifyList {
         });
         panel.add(addTrain);
 
-        Button editTrain = new Button("Edit Train");
+        JButton editTrain = GUI.Button("Edit Train");
+        editTrain.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new EditTrain(frame, database);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
         panel.add(editTrain);
 
-        Button addEmployee = new Button("Add Employee");
+        JButton addEmployee = GUI.Button("Add Employee");
         panel.add(addEmployee);
 
-        Button editEmployee = new Button("Edit Employee");
+        JButton editEmployee = GUI.Button("Edit Employee");
         panel.add(editEmployee);
 
-        Button addPassenger = new Button("Add Passenger");
+        JButton addPassenger = GUI.Button("Add Passenger");
         panel.add(addPassenger);
 
-        Button editPassenger = new Button("Edit Passenger");
+        JButton editPassenger = GUI.Button("Edit Passenger");
         panel.add(editPassenger);
 
-        Button addTrip = new Button("Add Trip");
+        JButton addTrip = GUI.Button("Add Trip");
         panel.add(addTrip);
 
-        Button editTrip = new Button("Edit Trip");
+        JButton editTrip = GUI.Button("Edit Trip");
         panel.add(editTrip);
 
         frame.getContentPane().add(panel, BorderLayout.CENTER);
         frame.setVisible(true);
-    }
-
-    private JButton Button(String text) {
-        JButton btn = new JButton(text);
-        btn.setBackground(Color.decode("#EBFFD8"));
-        btn.setForeground(Color.white);
-        btn.setFont(new Font("Serif", Font.BOLD, 20));
-        return btn;
     }
 }
