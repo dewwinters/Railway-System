@@ -48,7 +48,7 @@ public class TrainsDatabase {
 
     static Train getTrain(String id, Database database) throws SQLException {
         Train t = new Train();
-        String select = "SELECT * FROM `trains` WHERE ID = " + id + ";";
+        String select = "SELECT `ID`, `Capacity`, `Description` FROM `trains` WHERE ID = " + id + ";";
         ResultSet rs = database.getStatement().executeQuery(select);
         while (rs.next()) {
             t.setId(rs.getInt("ID"));

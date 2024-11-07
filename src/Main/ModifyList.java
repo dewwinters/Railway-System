@@ -1,6 +1,7 @@
 package Main;
 
 import Employees.AddEmployee;
+import Employees.EditEmployee;
 import Trains.AddTrain;
 import Trains.EditTrain;
 
@@ -12,7 +13,7 @@ import java.sql.SQLException;
 
 public class ModifyList {
     public ModifyList(JFrame oldFrame, Database database) {
-        JFrame frame = new JFrame("Railway System");
+        JFrame frame = new JFrame("Modify");
         frame.setSize(500, 500);
         frame.getContentPane().setLayout(new BorderLayout());
         frame.setLocationRelativeTo(oldFrame);
@@ -59,6 +60,15 @@ public class ModifyList {
         panel.add(addEmployee);
 
         JButton editEmployee = GUI.Button("Edit Employee");
+        editEmployee.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new EditEmployee(frame, database);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(frame, ex.getMessage());
+                }
+            }
+        });
         panel.add(editEmployee);
 
         JButton addPassenger = GUI.Button("Add Passenger");
