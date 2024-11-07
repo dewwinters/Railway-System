@@ -13,12 +13,12 @@ public class AddPassenger {
 
     public AddPassenger(JFrame parent, Database database) throws SQLException {
         JFrame frame = new JFrame("Add Passenger");
-        frame.setSize(750, 700);
+        frame.setSize(750, 500);
         frame.getContentPane().setLayout(new BorderLayout());
         frame.setLocationRelativeTo(parent);
         frame.getContentPane().setBackground(GUI.background);
 
-        JPanel panel = new JPanel(new GridLayout(7, 2, 20, 20));
+        JPanel panel = new JPanel(new GridLayout(5, 2, 20, 20));
         panel.setBackground(null);
         panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
 

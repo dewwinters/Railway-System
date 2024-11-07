@@ -91,7 +91,7 @@ public class ModifyList {
         editPassenger.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    new EditEmployee(frame, database);
+                    new EditPassenger(frame, database);
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(frame, ex.getMessage());
                 }

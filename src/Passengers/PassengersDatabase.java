@@ -37,4 +37,36 @@ public class PassengersDatabase {
         }
         return passengers;
     }
+
+    static String[] getPassengerIDs(Database database) throws SQLException {
+        ArrayList<Passenger> passengers = getAllPassengers(database);
+        String[] array = new String[passengers.size()];
+        for (int i = 0; i < passengers.size(); i++) {
+            array[i] = String.valueOf(passengers.get(i).getId());
+        }
+        return array;
+    }
+
+    static Passenger getPassenger (String id, Database database) throws SQLException {
+        Passenger p = new Passenger();
+        String select = "SELECT `ID`, `Name`, `Email`, `Tel` FROM `passengers` WHERE `ID` = " + id + ";";
+        ResultSet rs = database.getStatement().executeQuery(select);
+        while (rs.next()) {
+            p.setId(rs.getInt("ID"));
+            p.setName(rs.getString("Name"));
+            p.setEmail(rs.getString("Email"));
+            p.setTelephone(rs.getString("Tel"));
+        }
+        return p;
+    }
+
+    static void editPassenger(Passenger p, Database database) throws SQLException {
+        String update = "UPDATE `passengers` SET `Name`='" + p.getName() + "', `Email`='" + p.getEmail() + "', `Tel`='" + p.getTelephone() + "' WHERE `ID` = " + p.getId() + ";";
+        database.getStatement().execute(update);
+    }
+
+    static void deletePassenger(String id, Database database) throws SQLException {
+        String delete = "DELETE FROM `passengers` WHERE `ID` = " + id + ";";
+        database.getStatement().execute(delete);
+    }
 }

@@ -53,14 +53,13 @@ public class EditEmployee {
         position = GUI.TextField();
         panel.add(position);
 
-
-
         id.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
                     refreshData(database);
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(frame, ex.getMessage());
+                    frame.dispose();
                 }
             }
         });
@@ -76,7 +75,7 @@ public class EditEmployee {
             public void actionPerformed(ActionEvent e) {
                 try {
                     EmployeesDatabase.deleteEmployee(id.getSelectedItem().toString(), database);
-                    JOptionPane.showMessageDialog(frame, "Employee deleted.");
+                    JOptionPane.showMessageDialog(frame, "Employee Deleted Successfully.");
                     frame.dispose();
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(frame, "Operation Failed.");
@@ -98,7 +97,7 @@ public class EditEmployee {
                 emp.setPosition(position.getText());
                 try {
                     EmployeesDatabase.editEmployee(emp, database);
-                    JOptionPane.showMessageDialog(frame, "Employee successfully updated");
+                    JOptionPane.showMessageDialog(frame, "Employee Successfully Updated");
                     frame.dispose();
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(frame, "Operation Failed");
