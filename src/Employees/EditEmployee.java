@@ -113,7 +113,7 @@ public class EditEmployee {
 
     private void refreshData(Database database) throws SQLException {
         if (id.getSelectedItem() != null) {
-            Employee emp = EmployeesDatabase.getEmployee(id.getSelectedItem().toString(), database);
+            Employee emp = EmployeesDatabase.getEmployeeByID(id.getSelectedItem().toString(), database);
             name.setText(emp.getName());
             email.setText(emp.getEmail());
             tel.setText(emp.getTelephone());

@@ -46,7 +46,7 @@ public class TrainsDatabase {
         return array;
     }
 
-    static Train getTrain(String id, Database database) throws SQLException {
+    static Train getTrainByID(String id, Database database) throws SQLException {
         Train t = new Train();
         String select = "SELECT `ID`, `Capacity`, `Description` FROM `trains` WHERE ID = " + id + ";";
         ResultSet rs = database.getStatement().executeQuery(select);
@@ -66,5 +66,26 @@ public class TrainsDatabase {
     static void deleteTrain(String id, Database database) throws SQLException {
         String delete = "DELETE FROM `trains` WHERE ID = " + id + ";";
         database.getStatement().executeUpdate(delete);
+    }
+
+    public static String[] getTrainsNames(Database database) throws SQLException {
+        ArrayList<Train> trains = getAllTrains(database);
+        String[] array = new String[trains.size()];
+        for (int i = 0; i < trains.size(); i++) {
+            array[i] = trains.get(i).getDescription();
+        }
+        return array;
+    }
+
+    public static Train getTrainByName(String description, Database database) throws SQLException {
+        Train t = new Train();
+        String select = "SELECT `ID`, `Capacity`, `Description` FROM `trains` WHERE DESCRIPTION = '" + description + "';";
+        ResultSet rs = database.getStatement().executeQuery(select);
+        while (rs.next()) {
+            t.setId(rs.getInt("ID"));
+            t.setCapacity(rs.getInt("Capacity"));
+            t.setDescription(rs.getString("Description"));
+        }
+        return t;
     }
 }

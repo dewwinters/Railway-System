@@ -53,7 +53,7 @@ public class EditTrain {
         submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Train t = TrainsDatabase.getTrain(id.getSelectedItem().toString(), database);
+                    Train t = TrainsDatabase.getTrainByID(id.getSelectedItem().toString(), database);
                     t.setCapacity(Integer.parseInt(capacity.getText()));
                     t.setDescription(description.getText());
                     TrainsDatabase.editTrain(t, database);
@@ -71,7 +71,7 @@ public class EditTrain {
         id.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Train t = TrainsDatabase.getTrain(id.getSelectedItem().toString(), database);
+                    Train t = TrainsDatabase.getTrainByID(id.getSelectedItem().toString(), database);
                     capacity.setText(String.valueOf(t.getCapacity()));
                     description.setText(t.getDescription());
                 } catch (SQLException ex) {
@@ -83,7 +83,7 @@ public class EditTrain {
 
         if (id.getSelectedItem() != null) {
                 try {
-                    Train t = TrainsDatabase.getTrain(id.getSelectedItem().toString(), database);
+                    Train t = TrainsDatabase.getTrainByID(id.getSelectedItem().toString(), database);
                     capacity.setText(String.valueOf(t.getCapacity()));
                     description.setText(t.getDescription());
                 } catch (SQLException ex) {

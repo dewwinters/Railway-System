@@ -49,7 +49,7 @@ public class EmployeesDatabase {
         return array;
     }
 
-    static Employee getEmployee(String id, Database database) throws SQLException {
+    static Employee getEmployeeByID(String id, Database database) throws SQLException {
         Employee emp = new Employee();
         String select = "SELECT `ID`, `Name`, `Email`, `Tel`, `Salary`, `Position` FROM `employees` WHERE ID = " + id + ";";
         ResultSet rs = database.getStatement().executeQuery(select);
@@ -72,5 +72,29 @@ public class EmployeesDatabase {
     static void deleteEmployee(String id, Database database) throws SQLException {
         String delete = "DELETE FROM `employees` WHERE ID = " + id + ";";
         database.getStatement().execute(delete);
+    }
+
+    public static String[] getEmployeesNames(Database database) throws SQLException {
+        ArrayList<Employee> employees = getAllEmployees(database);
+        String[] array = new String[employees.size()];
+        for (int i = 0; i < employees.size(); i++) {
+            array[i] = employees.get(i).getName();
+        }
+        return array;
+    }
+
+    public static Employee getEmployeeByName(String name, Database database) throws SQLException {
+        Employee emp = new Employee();
+        String select = "SELECT `ID`, `Name`, `Email`, `Tel`, `Salary`, `Position` FROM `employees` WHERE Name = '" + name + "';";
+        ResultSet rs = database.getStatement().executeQuery(select);
+        while (rs.next()) {
+            emp.setId(rs.getInt("ID"));
+            emp.setName(rs.getString("Name"));
+            emp.setEmail(rs.getString("Email"));
+            emp.setTelephone(rs.getString("Tel"));
+            emp.setSalary(rs.getDouble("Salary"));
+            emp.setPosition(rs.getString("Position"));
+        }
+        return emp;
     }
 }
