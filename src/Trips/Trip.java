@@ -121,4 +121,32 @@ public class Trip {
     public void setPassengers(ArrayList<Passenger> passengers) {
         this.passengers = passengers;
     }
+
+    public String getDay() {
+        return date.format(DateTimeFormatter.ofPattern("dd"));
+    }
+
+    public String getMonth() {
+        return date.format(DateTimeFormatter.ofPattern("MM"));
+    }
+
+    public String getYear() {
+        return date.format(DateTimeFormatter.ofPattern("yyyy"));
+    }
+
+    public String getDeptHour() {
+        return departureTime.format(DateTimeFormatter.ofPattern("HH"));
+    }
+
+    public String getDeptMinute() {
+        return arrivalTime.format(DateTimeFormatter.ofPattern("mm"));
+    }
+
+    public String getArrivalHour() {
+        return arrivalTime.format(DateTimeFormatter.ofPattern("HH"));
+    }
+
+    public String getArrivalMinute() {
+        return arrivalTime.format(DateTimeFormatter.ofPattern("mm"));
+    }
 }

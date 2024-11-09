@@ -62,4 +62,55 @@ public class TripsDatabase {
         }
         return trips;
     }
+
+    public static String[] getIDs(Database database) throws SQLException {
+        ArrayList<Trip> trips = getAllTrips(database);
+        String[] array = new String[trips.size()];
+        for (int i = 0; i < trips.size(); i++) {
+            array[i] = String.valueOf(trips.get(i).getId());
+        }
+        return array;
+    }
+
+    public static Trip getTripById(String id, Database database) throws SQLException {
+        String select = "SELECT `ID`, `Start`, `Destination`, `DepartureTime`, `ArriveTime`, `Date`, `BookedSeats`, `Price`, `Driver`, `Train` FROM `trips` WHERE `ID` = " + id + ";";
+        ResultSet rs = database.getStatement().executeQuery(select);
+        rs.next();
+        Trip trip = new Trip();
+        trip.setId(rs.getInt("ID"));
+        trip.setStart(rs.getString("Start"));
+        trip.setDestination(rs.getString("Destination"));
+        trip.setDepartureTime(rs.getString("DepartureTime"));
+        trip.setArrivalTime(rs.getString("ArriveTime"));
+        trip.setDate(rs.getString("Date"));
+        trip.setBookedSeats(rs.getInt("BookedSeats"));
+        trip.setPrice(rs.getDouble("Price"));
+        int driverID = rs.getInt("Driver");
+        int trainID = rs.getInt("Train");
+        trip.setDriver(EmployeesDatabase.getEmployeeByID(String.valueOf(driverID), database));
+        trip.setTrain(TrainsDatabase.getTrainByID(String.valueOf(trainID), database));
+        return trip;
+    }
+
+    public static void editTrip(Trip trip, Database database) throws SQLException {
+        String update = "UPDATE `trips` SET " +
+                "`Start`='" + trip.getStart() + "', " +
+                "`Destination`='" + trip.getDestination() + "', " +
+                "`DepartureTime`='" + trip.getDepartureTime() + "', " +
+                "`ArriveTime`='" + trip.getArrivalTime() + "', " +
+                "`Date`='" + trip.getDate() + "', " +
+                "`Price`='" + trip.getPrice() + "', " +
+                "`Driver`='" + trip.getDriver().getId() + "', " +
+                "`Train`='" + trip.getTrain().getId() +
+                "' WHERE `ID` = " + trip.getId() + ";";
+        database.getStatement().execute(update);
+    }
+
+    public static void deleteTrip(String id, Database database) throws SQLException {
+        String delete = "DELETE FROM `trips` WHERE `ID` = " + id + ";";
+        database.getStatement().execute(delete);
+
+        String drop = "DROP TABLE `Trip " + id + " Passengers`;";
+        database.getStatement().execute(drop);
+    }
 }

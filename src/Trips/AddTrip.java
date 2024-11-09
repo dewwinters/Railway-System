@@ -22,13 +22,13 @@ public class AddTrip {
             HH[i+1] = String.format("%02d", i);
         }
 
-        String[] MM = new String[61];
-        MM[0] = "MM";
+        String[] mm = new String[61];
+        mm[0] = "mm";
         for (int i = 0; i < 60; i++) {
-            MM[i+1] = String.format("%02d", i);
+            mm[i+1] = String.format("%02d", i);
         }
 
-        JFrame frame = new JFrame("Add Employee");
+        JFrame frame = new JFrame("Add Trip");
         frame.setSize(750, 1000);
         frame.getContentPane().setLayout(new BorderLayout());
         frame.setLocationRelativeTo(parent);
@@ -54,7 +54,7 @@ public class AddTrip {
         JPanel dept = new JPanel(new GridLayout(1, 2, 10, 10));
         dept.setBackground(null);
         JComboBox<String> deptHH = GUI.JComboBox(HH);
-        JComboBox<String> deptMM = GUI.JComboBox(MM);
+        JComboBox<String> deptMM = GUI.JComboBox(mm);
         dept.add(deptHH);
         dept.add(deptMM);
         panel.add(dept);
@@ -63,7 +63,7 @@ public class AddTrip {
         JPanel arrive = new JPanel(new GridLayout(1, 2, 10, 10));
         arrive.setBackground(null);
         JComboBox<String> arriveHH = GUI.JComboBox(HH);
-        JComboBox<String> arriveMM = GUI.JComboBox(MM);
+        JComboBox<String> arriveMM = GUI.JComboBox(mm);
         arrive.add(arriveHH);
         arrive.add(arriveMM);
         panel.add(arrive);
@@ -74,10 +74,10 @@ public class AddTrip {
             dd[i] = String.format("%02d", i);
         }
 
-        String[] mm = new String[13];
-        mm[0] = "mm";
+        String[] MM = new String[13];
+        MM[0] = "MM";
         for (int i = 1; i < 13; i++) {
-            mm[i] = String.format("%02d", i);
+            MM[i] = String.format("%02d", i);
         }
 
         String[] yyyy = new String[11];
@@ -90,7 +90,7 @@ public class AddTrip {
         JPanel date = new JPanel(new GridLayout(1, 3, 10, 10));
         date.setBackground(null);
         JComboBox<String> datedd = GUI.JComboBox(dd);
-        JComboBox<String> datemm = GUI.JComboBox(mm);
+        JComboBox<String> datemm = GUI.JComboBox(MM);
         JComboBox<String> dateyyyy = GUI.JComboBox(yyyy);
         date.add(datedd);
         date.add(datemm);

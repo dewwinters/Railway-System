@@ -75,10 +75,10 @@ public class EditEmployee {
             public void actionPerformed(ActionEvent e) {
                 try {
                     EmployeesDatabase.deleteEmployee(id.getSelectedItem().toString(), database);
-                    JOptionPane.showMessageDialog(frame, "Employee Deleted Successfully.");
+                    JOptionPane.showMessageDialog(frame, "Employee Deleted Successfully");
                     frame.dispose();
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(frame, "Operation Failed.");
+                    JOptionPane.showMessageDialog(frame, "Operation Failed");
                     frame.dispose();
                 }
             }
@@ -97,7 +97,7 @@ public class EditEmployee {
                 emp.setPosition(position.getText());
                 try {
                     EmployeesDatabase.editEmployee(emp, database);
-                    JOptionPane.showMessageDialog(frame, "Employee Successfully Updated");
+                    JOptionPane.showMessageDialog(frame, "Employee Updated Successfully");
                     frame.dispose();
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(frame, "Operation Failed");

@@ -48,7 +48,7 @@ public class Main {
             trip.setDestination("Destination");
             trip.setStart("Start");
             Train tr = new Train();
-            tr.setDescription("Trains.Train 1 VIP");
+            tr.setDescription("Train 1 VIP");
             trip.setTrain(tr);
             trip.setPrice(50);
             trips.add(trip);
