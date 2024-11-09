@@ -7,13 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PassengersDatabase {
-    static void addPassenger(Passenger p, Database database) throws SQLException {
+    public static void addPassenger(Passenger p, Database database) throws SQLException {
         String insert = "INSERT INTO `passengers`(`ID`, `Name`, `Email`, `Tel`)"
                 + "VALUES ('" + p.getId() + "','" + p.getName() + "','" + p.getEmail() + "','" +p.getTelephone() + "');";
         database.getStatement().executeUpdate(insert);
     }
 
-    static int getNextID(Database database) throws SQLException {
+    public static int getNextID(Database database) throws SQLException {
         int id = 0;
         int size = getAllPassengers(database).size();
         ArrayList<Passenger> passengers = getAllPassengers(database);
@@ -23,7 +23,7 @@ public class PassengersDatabase {
         return id;
     }
 
-    static ArrayList<Passenger> getAllPassengers(Database database) throws SQLException {
+    public static ArrayList<Passenger> getAllPassengers(Database database) throws SQLException {
         String select = "SELECT * FROM `passengers`";
         ArrayList<Passenger> passengers = new ArrayList<>();
         ResultSet rs = database.getStatement().executeQuery(select);
@@ -38,7 +38,7 @@ public class PassengersDatabase {
         return passengers;
     }
 
-    static String[] getPassengerIDs(Database database) throws SQLException {
+    public static String[] getPassengerIDs(Database database) throws SQLException {
         ArrayList<Passenger> passengers = getAllPassengers(database);
         String[] array = new String[passengers.size()];
         for (int i = 0; i < passengers.size(); i++) {
@@ -47,7 +47,7 @@ public class PassengersDatabase {
         return array;
     }
 
-    static Passenger getPassenger (String id, Database database) throws SQLException {
+    public static Passenger getPassenger (String id, Database database) throws SQLException {
         Passenger p = new Passenger();
         String select = "SELECT `ID`, `Name`, `Email`, `Tel` FROM `passengers` WHERE `ID` = " + id + ";";
         ResultSet rs = database.getStatement().executeQuery(select);
@@ -60,12 +60,12 @@ public class PassengersDatabase {
         return p;
     }
 
-    static void editPassenger(Passenger p, Database database) throws SQLException {
+    public static void editPassenger(Passenger p, Database database) throws SQLException {
         String update = "UPDATE `passengers` SET `Name`='" + p.getName() + "', `Email`='" + p.getEmail() + "', `Tel`='" + p.getTelephone() + "' WHERE `ID` = " + p.getId() + ";";
         database.getStatement().execute(update);
     }
 
-    static void deletePassenger(String id, Database database) throws SQLException {
+    public static void deletePassenger(String id, Database database) throws SQLException {
         String delete = "DELETE FROM `passengers` WHERE `ID` = " + id + ";";
         database.getStatement().execute(delete);
     }

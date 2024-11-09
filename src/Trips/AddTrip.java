@@ -39,7 +39,7 @@ public class AddTrip {
         panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
 
         panel.add(GUI.Label("ID:"));
-        JLabel id = GUI.Label("0");
+        JLabel id = GUI.Label(String.valueOf(TripsDatabase.getNextID(database)));
         panel.add(id);
 
         panel.add(GUI.Label("Start:"));
