@@ -3,6 +3,7 @@ package Trips;
 import Employees.EmployeesDatabase;
 import Main.Database;
 import Main.GUI;
+import Main.Main;
 import Trains.TrainsDatabase;
 
 import javax.swing.*;
@@ -155,6 +156,7 @@ public class AddTrip {
                 try {
                     TripsDatabase.addTrip(trip, database);
                     JOptionPane.showMessageDialog(frame, "Trip Added Successfully.");
+                    Main.refreshTable(TripsDatabase.getAllTrips(database));
                     frame.dispose();
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(frame, "Operation Failed.");

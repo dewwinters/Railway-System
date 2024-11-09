@@ -3,6 +3,7 @@ package Trips;
 import Employees.EmployeesDatabase;
 import Main.Database;
 import Main.GUI;
+import Main.Main;
 import Trains.TrainsDatabase;
 
 import javax.swing.*;
@@ -117,6 +118,7 @@ public class EditTrip {
                 try {
                     TripsDatabase.deleteTrip(id.getSelectedItem().toString(), database);
                     JOptionPane.showMessageDialog(frame, "Trip Deleted Successfully");
+                    Main.refreshTable(TripsDatabase.getAllTrips(database));
                     frame.dispose();
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(frame, "Operation Failed");
@@ -150,10 +152,11 @@ public class EditTrip {
                 trip.setPassengers(new ArrayList<>());
                 try {
                     TripsDatabase.editTrip(trip, database);
-                    JOptionPane.showMessageDialog(frame, "Trip Updated Successfully.");
+                    JOptionPane.showMessageDialog(frame, "Trip Updated Successfully");
+                    Main.refreshTable(TripsDatabase.getAllTrips(database));
                     frame.dispose();
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(frame, "Operation Failed.");
+                    JOptionPane.showMessageDialog(frame, "Operation Failed");
                     frame.dispose();
                 }
             }

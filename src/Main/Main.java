@@ -1,7 +1,7 @@
 package Main;
 
-import Trains.Train;
 import Trips.Trip;
+import Trips.TripsDatabase;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,20 +39,7 @@ public class Main {
         table = new JPanel(gridLayout);
         table.setBackground(Color.decode("#EBFFD8"));
 
-        ArrayList<Trip> trips = new ArrayList<>();
-        for (int i = 0; i < 8; i++) {
-            Trip trip = new Trip();
-            trip.setArrivalTime("00:00");
-            trip.setDepartureTime("00:00");
-            trip.setDate("30/09/2023");
-            trip.setDestination("Destination");
-            trip.setStart("Start");
-            Train tr = new Train();
-            tr.setDescription("Train 1 VIP");
-            trip.setTrain(tr);
-            trip.setPrice(50);
-            trips.add(trip);
-        }
+        ArrayList<Trip> trips = TripsDatabase.getAllTrips(database);
         refreshTable(trips);
 
         JScrollPane sp = new JScrollPane(table);
@@ -73,7 +60,10 @@ public class Main {
         frame.setVisible(true);
     }
 
-    private static void refreshTable(ArrayList<Trip> trips) {
+    public static void refreshTable(ArrayList<Trip> trips) {
+        table.removeAll();
+        table.repaint();
+        table.revalidate();
         int rows = trips.size() + 1;
         if (rows < 6 ) rows = 6;
         gridLayout.setRows(rows);
