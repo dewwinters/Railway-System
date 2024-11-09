@@ -24,7 +24,7 @@ public class TripsDatabase {
                 + trip.getTrain().getId() + "');";
         database.getStatement().execute(insert);
 
-        String create = "CREATE TABLE `Trip " + trip.getId() + " Passengers` (Passenger int, Tickets int);";
+        String create = "CREATE TABLE `Trip " + trip.getId() + " Detail` (Passenger int, Tickets int);";
         database.getStatement().execute(create);
     }
 
@@ -110,12 +110,12 @@ public class TripsDatabase {
         String delete = "DELETE FROM `trips` WHERE `ID` = " + id + ";";
         database.getStatement().execute(delete);
 
-        String drop = "DROP TABLE `Trip " + id + " Passengers`;";
+        String drop = "DROP TABLE `Trip " + id + " Detail`;";
         database.getStatement().execute(drop);
     }
 
     public static void BookTrip(Trip trip, String passengerID, String num, Database database) throws SQLException {
-        String insert = "INSERT INTO `Trip " + trip.getId() + " Passengers` (`Passenger`, `Tickets`)"
+        String insert = "INSERT INTO `Trip " + trip.getId() + " Detail` (`Passenger`, `Tickets`)"
                         + " VALUES ('" + passengerID + "','" + num + "');";
         database.getStatement().execute(insert);
     }

@@ -4,6 +4,7 @@ import Employees.AddEmployee;
 import Employees.EditEmployee;
 import Passengers.AddPassenger;
 import Passengers.EditPassenger;
+import Passengers.ShowPassengers;
 import Trains.AddTrain;
 import Trains.EditTrain;
 import Trips.AddTrip;
@@ -124,6 +125,15 @@ public class ModifyList {
         panel.add(editTrip);
 
         JButton showPassengers = GUI.Button("Show Passengers");
+        showPassengers.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new ShowPassengers(frame, database);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(frame, ex.getMessage());
+                }
+            }
+        });
         panel.add(showPassengers);
 
         frame.getContentPane().add(panel, BorderLayout.CENTER);
