@@ -2,6 +2,7 @@ package Trips;
 
 import Main.Database;
 import Main.GUI;
+import Main.Main;
 import Passengers.Passenger;
 import Passengers.PassengersDatabase;
 
@@ -81,6 +82,7 @@ public class BookTrip {
                 try {
                     TripsDatabase.BookTrip(trip, id.getText(), numOfTickets.getText(), database);
                     JOptionPane.showMessageDialog(frame, "Book Successfully");
+                    Main.refreshTable(TripsDatabase.getAllTrips(database));
                     frame.dispose();
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(frame, "Operation Failed");

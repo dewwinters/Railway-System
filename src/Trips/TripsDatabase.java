@@ -24,7 +24,7 @@ public class TripsDatabase {
                 + trip.getTrain().getId() + "');";
         database.getStatement().execute(insert);
 
-        String create = "CREATE TABLE `Trip " + trip.getId() + " Detail` (Passenger int, Tickets int);";
+        String create = "CREATE TABLE `Trip " + trip.getId() + " detail` (Passenger int, Tickets int);";
         database.getStatement().execute(create);
     }
 
@@ -110,13 +110,34 @@ public class TripsDatabase {
         String delete = "DELETE FROM `trips` WHERE `ID` = " + id + ";";
         database.getStatement().execute(delete);
 
-        String drop = "DROP TABLE `Trip " + id + " Detail`;";
+        String drop = "DROP TABLE `trip " + id + " detail`;";
         database.getStatement().execute(drop);
     }
 
     public static void BookTrip(Trip trip, String passengerID, String num, Database database) throws SQLException {
-        String insert = "INSERT INTO `Trip " + trip.getId() + " Detail` (`Passenger`, `Tickets`)"
+        String insert = "INSERT INTO `trip " + trip.getId() + " detail` (`Passenger`, `Tickets`)"
                         + " VALUES ('" + passengerID + "','" + num + "');";
         database.getStatement().execute(insert);
+
+        trip.setBookedSeats(trip.getBookedSeats() + Integer.parseInt(num));
+        String update = "UPDATE `trips` SET `BookedSeats` = '" + trip.getBookedSeats() + "' WHERE `ID` = " + trip.getId() + ";";
+        database.getStatement().execute(update);
+    }
+
+    public static String[][] getPassengers(String id, Database database) throws SQLException {
+        String select = "SELECT * FROM `trip " + id + " detail`;";
+        ResultSet rs = database.getStatement().executeQuery(select);
+        ArrayList<Integer> ids = new ArrayList<>();
+        ArrayList<Integer> nums = new ArrayList<>();
+        while (rs.next()) {
+            ids.add(rs.getInt("Passenger"));
+            nums.add(rs.getInt("Tickets"));
+        }
+        String[][] array = new String[ids.size()][2];
+        for (int i = 0; i < ids.size(); i++) {
+            array[i][0] = String.valueOf(ids.get(i));
+            array[i][1] = String.valueOf(nums.get(i));
+        }
+        return array;
     }
 }
