@@ -113,4 +113,10 @@ public class TripsDatabase {
         String drop = "DROP TABLE `Trip " + id + " Passengers`;";
         database.getStatement().execute(drop);
     }
+
+    public static void BookTrip(Trip trip, String passengerID, String num, Database database) throws SQLException {
+        String insert = "INSERT INTO `Trip " + trip.getId() + " Passengers` (`Passenger`, `Tickets`)"
+                        + " VALUES ('" + passengerID + "','" + num + "');";
+        database.getStatement().execute(insert);
+    }
 }

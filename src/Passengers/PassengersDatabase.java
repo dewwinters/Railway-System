@@ -69,4 +69,25 @@ public class PassengersDatabase {
         String delete = "DELETE FROM `passengers` WHERE `ID` = " + id + ";";
         database.getStatement().execute(delete);
     }
+
+    public static String[] getPassengerNames(Database database) throws SQLException {
+        ArrayList<Passenger> passengers = getAllPassengers(database);
+        String[] array = new String[passengers.size()];
+        for (int i = 0; i < passengers.size(); i++) {
+            array[i] = passengers.get(i).getName();
+        }
+        return array;
+    }
+
+    public static Passenger getPassengerByName(String name, Database database) throws SQLException {
+        Passenger p = new Passenger();
+        String select = "SELECT * FROM `passengers` WHERE `Name` = '" + name + "';";
+        ResultSet rs = database.getStatement().executeQuery(select);
+        rs.next();
+        p.setId(rs.getInt("ID"));
+        p.setName(rs.getString("Name"));
+        p.setTelephone(rs.getString("Tel"));
+        p.setEmail(rs.getString("Email"));
+        return p;
+    }
 }

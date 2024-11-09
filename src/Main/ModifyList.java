@@ -18,12 +18,12 @@ import java.sql.SQLException;
 public class ModifyList {
     public ModifyList(JFrame oldFrame, Database database) {
         JFrame frame = new JFrame("Modify");
-        frame.setSize(500, 500);
+        frame.setSize(500, 900);
         frame.getContentPane().setLayout(new BorderLayout());
         frame.setLocationRelativeTo(oldFrame);
         frame.getContentPane().setBackground(Color.decode("#EBFFD8"));
 
-        JPanel panel = new JPanel(new GridLayout(8, 18, 10, 10));
+        JPanel panel = new JPanel(new GridLayout(9, 18, 10, 10));
         panel.setBackground(null);
         panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
 
@@ -122,6 +122,9 @@ public class ModifyList {
             }
         });
         panel.add(editTrip);
+
+        JButton showPassengers = GUI.Button("Show Passengers");
+        panel.add(showPassengers);
 
         frame.getContentPane().add(panel, BorderLayout.CENTER);
         frame.setVisible(true);

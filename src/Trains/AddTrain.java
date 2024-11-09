@@ -26,11 +26,11 @@ public class AddTrain {
         panel.add(id);
 
         panel.add(GUI.Label("Capacity:"));
-        TextField capacity = new TextField();
+        JTextField capacity = GUI.TextField();
         panel.add(capacity);
 
         panel.add(GUI.Label("Description:"));
-        TextField description = new TextField();
+        JTextField description = GUI.TextField();
         panel.add(description);
 
         JButton cancel = GUI.Button("Cancel");

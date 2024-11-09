@@ -1,12 +1,12 @@
 package Main;
 
+import Trips.BookTrip;
 import Trips.Trip;
 import Trips.TripsDatabase;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -15,9 +15,10 @@ public class Main {
     private static JFrame frame;
     private static JPanel table;
     private static GridLayout gridLayout;
+    private static Database database;
 
     public static void main(String[] args) throws SQLException {
-        Database database = new Database();
+        database = new Database();
 
         frame = new JFrame("Railway System");
         frame.setSize(1280, 720);
@@ -94,6 +95,36 @@ public class Main {
                 statusS = "Available";
             }
             row.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            row.addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    try {
+                        new BookTrip(frame, database, trip);
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(frame, ex.getMessage());
+                    }
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+
+                }
+            });
         } else {
             trainS = "Train";
             startS = "From";
